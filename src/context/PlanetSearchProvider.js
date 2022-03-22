@@ -7,20 +7,17 @@ import planetApi from '../services/planetApi';
 function PlanetSearchProvider({ children }) {
   const { Provider } = PlanetSearchContext;
   const [data, setData] = useState([]);
-  const [titles, setTitles] = useState([]);
 
   useEffect(() => {
     const returnApi = async () => {
       const valuePlanet = await planetApi();
       setData(valuePlanet.results);
-      setTitles(() => Object.keys(valuePlanet.results[0])
-        .filter((title) => title !== 'residents'));
     };
     returnApi();
   }, []);
 
   return (
-    <Provider value={ { data, titles } }>
+    <Provider value={ { data } }>
       { children }
     </Provider>
   );

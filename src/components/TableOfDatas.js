@@ -2,13 +2,16 @@ import React, { useContext } from 'react';
 import PlanetSearchContext from '../context/PlanetSearchContext';
 
 function TableOfDatas() {
-  const { data, titles } = useContext(PlanetSearchContext);
+  const { data } = useContext(PlanetSearchContext);
 
   return (
     <table>
       <thead>
         <tr>
-          { titles && titles.map((title, index) => <td key={ index }>{ title }</td>) }
+          { data[0]
+          && Object.keys(data[0])
+            .filter((title) => title !== 'residents')
+            .map((header, index) => <th key={ index }>{ header }</th>)}
         </tr>
       </thead>
       <tbody>
