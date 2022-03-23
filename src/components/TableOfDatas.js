@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PlanetSearchContext from '../context/PlanetSearchContext';
 
 function TableOfDatas() {
-  const { data } = useContext(PlanetSearchContext);
+  const { data, filterName } = useContext(PlanetSearchContext);
 
   return (
     <table>
@@ -16,13 +16,14 @@ function TableOfDatas() {
       </thead>
       <tbody>
         { data
-          && data.map((infoPlanet, index) => (
-            <tr key={ index }>
-              { Object.entries(infoPlanet)
-                .filter((title) => title[0] !== 'residents')
-                .map((infoPlan, jindex) => <td key={ jindex }>{ infoPlan[1] }</td>)}
-            </tr>
-          ))}
+          && data.filter((planet) => filterName(planet))
+            .map((infoPlanet, index) => (
+              <tr key={ index }>
+                { Object.entries(infoPlanet)
+                  .filter((title) => title[0] !== 'residents')
+                  .map((infoPlan, jindex) => <td key={ jindex }>{ infoPlan[1] }</td>)}
+              </tr>
+            ))}
       </tbody>
     </table>
   );
