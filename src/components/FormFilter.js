@@ -12,6 +12,7 @@ function NavFilter() {
     handleColumnChange,
     handleComparisonChange,
     isVisible,
+    valuesColumn,
   } = useContext(PlanetSearchContext);
 
   return (
@@ -19,13 +20,7 @@ function NavFilter() {
       <SelectGeneric
         name="OrderColumn"
         id="column-filter"
-        values={ [
-          'population',
-          'orbital_period',
-          'diameter',
-          'rotation_period',
-          'surface_water',
-        ] }
+        values={ valuesColumn }
         funcOfChange={ handleColumnChange }
       />
       <SelectGeneric

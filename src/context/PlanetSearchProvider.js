@@ -12,6 +12,14 @@ function PlanetSearchProvider({ children }) {
   const [comparison, setComparison] = useState('maior que');
   const [value, setValue] = useState(0);
 
+  const [valuesColumn, setValuesColumn] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
+
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -42,15 +50,18 @@ function PlanetSearchProvider({ children }) {
     if (comparison === 'maior que') {
       valueReturn = data
         .filter((Planets) => Planets[column] - value > 0);
+      setValuesColumn(valuesColumn.filter((valueColumn) => valueColumn !== column));
     }
     if (comparison === 'menor que') {
       valueReturn = data
         .filter((Planets) => Planets[column] - value < 0
         || Planets[column] === 'unknown');
+      setValuesColumn(valuesColumn.filter((valueColumn) => valueColumn !== column));
     }
     if (comparison === 'igual a') {
       valueReturn = data
         .filter((Planets) => Planets[column] === value);
+      setValuesColumn(valuesColumn.filter((valueColumn) => valueColumn !== column));
     }
 
     setData(valueReturn);
@@ -86,6 +97,7 @@ function PlanetSearchProvider({ children }) {
         handleColumnChange,
         handleComparisonChange,
         isVisible,
+        valuesColumn,
       } }
     >
       { children }
