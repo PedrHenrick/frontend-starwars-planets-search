@@ -45,7 +45,8 @@ function PlanetSearchProvider({ children }) {
     }
     if (comparison === 'menor que') {
       valueReturn = data
-        .filter((Planets) => Planets[column] < value || Planets[column] === 'unknown');
+        .filter((Planets) => Planets[column] - value < 0
+        || Planets[column] === 'unknown');
     }
     if (comparison === 'igual a') {
       valueReturn = data
