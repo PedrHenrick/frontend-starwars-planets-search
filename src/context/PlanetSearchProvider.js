@@ -7,11 +7,7 @@ import planetApi from '../services/planetApi';
 function PlanetSearchProvider({ children }) {
   const { Provider } = PlanetSearchContext;
   const [data, setData] = useState([]);
-  const [filterByName, setFilterByName] = useState({
-    filterByName: {
-      name: '',
-    },
-  });
+  const [name, setName] = useState('');
 
   useEffect(() => {
     const returnApi = async () => {
@@ -22,16 +18,16 @@ function PlanetSearchProvider({ children }) {
   }, []);
 
   function filterName(planet) {
-    const name = planet.name.includes(filterByName.name);
-    return name;
+    const planetFilter = planet.name.toUpperCase().includes(name.toUpperCase());
+    return planetFilter;
   }
 
   function handleChange(target) {
-    setFilterByName({ name: target.value });
+    setName(target.value);
   }
 
   return (
-    <Provider value={ { data, handleChange, filterName } }>
+    <Provider value={ { data, filterByName: { name }, handleChange, filterName } }>
       { children }
     </Provider>
   );
@@ -44,5 +40,5 @@ PlanetSearchProvider.defaultProps = {
 };
 
 PlanetSearchProvider.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.arrayOf(PropTypes.element),
 };

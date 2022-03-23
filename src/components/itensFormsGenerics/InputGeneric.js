@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PlanetSearchContext from '../../context/PlanetSearchContext';
 
 function InputGeneric({ name, type, id }) {
-  const { handleChange } = useContext(PlanetSearchContext);
+  const { handleChange, filterByName } = useContext(PlanetSearchContext);
 
   return (
     <label htmlFor={ name }>
@@ -12,6 +12,7 @@ function InputGeneric({ name, type, id }) {
         name={ name }
         id={ name }
         data-testid={ id }
+        value={ filterByName.name }
         onChange={ ({ target }) => handleChange(target) }
       />
     </label>
