@@ -16,8 +16,12 @@ function PlanetSearchProvider({ children }) {
     returnApi();
   }, []);
 
+  function handleChange(target) {
+    console.log(target);
+  }
+
   return (
-    <Provider value={ { data } }>
+    <Provider value={ { data, handleChange } }>
       { children }
     </Provider>
   );
