@@ -11,6 +11,7 @@ function NavFilter() {
     handleValueChange,
     handleColumnChange,
     handleComparisonChange,
+    isVisible,
   } = useContext(PlanetSearchContext);
 
   return (
@@ -47,6 +48,7 @@ function NavFilter() {
       <button
         type="submit"
         data-testid="button-filter"
+        disabled={ isVisible }
       >
         filtrar
       </button>

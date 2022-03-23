@@ -8,9 +8,11 @@ function PlanetSearchProvider({ children }) {
   const { Provider } = PlanetSearchContext;
   const [data, setData] = useState([]);
   const [name, setName] = useState('');
-  const [column, setColumn] = useState('');
-  const [comparison, setComparison] = useState('');
+  const [column, setColumn] = useState('population');
+  const [comparison, setComparison] = useState('maior que');
   const [value, setValue] = useState(0);
+
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const returnApi = async () => {
@@ -20,6 +22,14 @@ function PlanetSearchProvider({ children }) {
     returnApi();
   }, []);
 
+  useEffect(() => {
+    const disabledMutate = () => {
+      if (value === '') setIsVisible(true);
+      else setIsVisible(false);
+    };
+    disabledMutate();
+  }, [value]);
+
   function filterName(planet) {
     const planetFilter = planet.name.toUpperCase().includes(name.toUpperCase());
     return planetFilter;
@@ -27,7 +37,22 @@ function PlanetSearchProvider({ children }) {
 
   function handleSubmitForm(e) {
     e.preventDefault();
-    console.log('submeti');
+    let valueReturn = [];
+
+    if (comparison === 'maior que') {
+      valueReturn = data
+        .filter((Planets) => Planets[column] - value > 0);
+    }
+    if (comparison === 'menor que') {
+      valueReturn = data
+        .filter((Planets) => Planets[column] < value || Planets[column] === 'unknown');
+    }
+    if (comparison === 'igual a') {
+      valueReturn = data
+        .filter((Planets) => Planets[column] === value);
+    }
+
+    setData(valueReturn);
   }
 
   function handleNameChange(target) {
@@ -59,6 +84,7 @@ function PlanetSearchProvider({ children }) {
         handleValueChange,
         handleColumnChange,
         handleComparisonChange,
+        isVisible,
       } }
     >
       { children }

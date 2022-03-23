@@ -7,7 +7,6 @@ function SelectGeneric({ name, id, values, funcOfChange }) {
       <select
         id={ name }
         data-testid={ id }
-        value={ values[0] }
         onChange={ ({ target }) => funcOfChange(target) }
       >
         { values.map((value, index) => <option key={ index }>{ value }</option>) }
