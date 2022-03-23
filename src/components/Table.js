@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PlanetSearchContext from '../context/PlanetSearchContext';
 
-function TableOfDatas() {
+function Table() {
   const { data, filterName, filterByName } = useContext(PlanetSearchContext);
 
   return (
@@ -29,4 +29,4 @@ function TableOfDatas() {
   );
 }
 
-export default TableOfDatas;
+export default Table;

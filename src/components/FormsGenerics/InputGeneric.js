@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import PlanetSearchContext from '../../context/PlanetSearchContext';
 
-function InputGeneric({ name, type, id }) {
-  const { handleChange, filterByName } = useContext(PlanetSearchContext);
-
+function InputGeneric({ name, type, id, value, funcOfChange }) {
   return (
     <label htmlFor={ name }>
       <input
@@ -12,8 +9,8 @@ function InputGeneric({ name, type, id }) {
         name={ name }
         id={ name }
         data-testid={ id }
-        value={ filterByName.name }
-        onChange={ ({ target }) => handleChange(target) }
+        value={ value }
+        onChange={ ({ target }) => funcOfChange(target) }
       />
     </label>
   );
@@ -25,4 +22,9 @@ InputGeneric.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  funcOfChange: PropTypes.func.isRequired,
 };

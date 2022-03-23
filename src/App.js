@@ -1,15 +1,12 @@
 import React from 'react';
 import PlanetSearchProvider from './context/PlanetSearchProvider';
 
-import TableOfDatas from './components/TableOfDatas';
-import './styles/table.css';
-import AllFilter from './components/AllFilters';
+import Home from './pages/Home';
 
 function App() {
   return (
     <PlanetSearchProvider>
-      <AllFilter />
-      <TableOfDatas />
+      <Home />
     </PlanetSearchProvider>
   );
 }
