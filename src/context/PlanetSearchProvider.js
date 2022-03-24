@@ -49,13 +49,12 @@ function PlanetSearchProvider({ children }) {
 
     if (comparison === 'maior que') {
       valueReturn = data
-        .filter((Planets) => Planets[column] - value > 0);
+        .filter((Planets) => Number(Planets[column]) > value);
       setValuesColumn(valuesColumn.filter((valueColumn) => valueColumn !== column));
     }
     if (comparison === 'menor que') {
       valueReturn = data
-        .filter((Planets) => Planets[column] - value < 0
-        || Planets[column] === 'unknown');
+        .filter((Planets) => Number(Planets[column]) < value);
       setValuesColumn(valuesColumn.filter((valueColumn) => valueColumn !== column));
     }
     if (comparison === 'igual a') {
