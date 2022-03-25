@@ -8,11 +8,10 @@ function NavFilter() {
   const {
     handleSubmitForm,
     value,
-    handleValueChange,
-    handleColumnChange,
-    handleComparisonChange,
     isVisible,
     valuesColumn,
+    handleChange,
+    deleteAllFilter,
   } = useContext(PlanetSearchContext);
 
   return (
@@ -21,7 +20,7 @@ function NavFilter() {
         name="OrderColumn"
         id="column-filter"
         values={ valuesColumn }
-        funcOfChange={ handleColumnChange }
+        funcOfChange={ handleChange }
       />
       <SelectGeneric
         name="typeColumn"
@@ -31,14 +30,14 @@ function NavFilter() {
           'menor que',
           'igual a',
         ] }
-        funcOfChange={ handleComparisonChange }
+        funcOfChange={ handleChange }
       />
       <InputGeneric
         type="number"
         name="filterNumber"
         id="value-filter"
         value={ value }
-        funcOfChange={ handleValueChange }
+        funcOfChange={ handleChange }
       />
       <button
         type="submit"
@@ -46,6 +45,13 @@ function NavFilter() {
         disabled={ isVisible }
       >
         filtrar
+      </button>
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ () => deleteAllFilter() }
+      >
+        Remover todas filtragens
       </button>
     </form>
   );

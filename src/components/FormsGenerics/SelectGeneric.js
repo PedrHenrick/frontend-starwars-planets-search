@@ -5,6 +5,7 @@ function SelectGeneric({ name, id, values, funcOfChange }) {
   return (
     <label htmlFor={ name }>
       <select
+        name={ name }
         id={ name }
         data-testid={ id }
         onChange={ ({ target }) => funcOfChange(target) }

@@ -3,7 +3,7 @@ import InputGeneric from './FormsGenerics/InputGeneric';
 import PlanetSearchContext from '../context/PlanetSearchContext';
 
 function Header() {
-  const { handleNameChange, filterByName } = useContext(PlanetSearchContext);
+  const { handleChange, filterByName } = useContext(PlanetSearchContext);
 
   return (
     <header>
@@ -12,7 +12,7 @@ function Header() {
         type="text"
         id="name-filter"
         value={ filterByName.name }
-        funcOfChange={ handleNameChange }
+        funcOfChange={ handleChange }
       />
     </header>
   );
