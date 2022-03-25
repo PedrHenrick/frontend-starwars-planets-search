@@ -5,23 +5,23 @@ function ListFilter() {
   const { listFilter, deleteFilter } = useContext(PlanetSearchContext);
 
   return (
-    <ul>
+    <div>
       { listFilter.map((li, index) => (
         <li
           key={ index }
+          data-testid="filter"
         >
           {`${li[0]} ${li[1]} ${li[2]}`}
           {' '}
           <button
             type="button"
-            data-testid="filter"
             onClick={ () => deleteFilter(index) }
           >
             X
           </button>
         </li>
       ))}
-    </ul>
+    </div>
   );
 }
 
